@@ -15,4 +15,4 @@ Implemented:
 
 Known limits: no remote writes or revocation, no exhaustive platform/deployment inventory, no cross-run value-change proof, no quiet-window retirement approval, static AWS profiles only, and no OS-level isolation between a user-owned agent and terminal. Cases contain private unencrypted metadata. See the README support table and validation record for precise scope.
 
-This candidate has passed local offline checks. Live integration checks, real-host skill behavior and hosted CI remain pending. This document describes the source alpha; it is not a tagged release announcement.
+This candidate has passed local offline checks and hosted Linux/macOS CI, including terminal smoke and parser fuzzing. Live integration checks and real-host skill behavior remain pending; see the [validation record](VALIDATION.md). This document describes the source alpha; it is not a tagged release announcement.

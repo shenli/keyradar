@@ -2,7 +2,7 @@
 
 Baseline: 2026-10-21. Pre-push checks repeated on 2026-10-22. Local runner: macOS arm64, Go 1.26.2. All source and issuer API responses used by tests are mocked. No live provider credentials were supplied or used.
 
-## Completed locally
+## Completed validation
 
 | Check | Result | Evidence / scope |
 |---|---|---|
@@ -13,9 +13,10 @@ Baseline: 2026-10-21. Pre-push checks repeated on 2026-10-22. Local runner: macO
 | Parser fuzzing | PASS | `go test ./internal/scan -run '^$' -fuzz FuzzParseEnv -fuzztime 10s -parallel 2`: 513,943 executions; no failing input |
 | Skill package validation | PASS | Both SKILL.md packages checked by the skill-creator validator |
 | Schema drift | PASS | `python3 scripts/generate_schemas.py --check` |
-| Linux amd64 cross-build | PASS | Compiled on macOS; Linux runtime execution remains pending CI |
+| Linux amd64 cross-build | PASS | Compiled on macOS; native Linux runtime checks also passed in hosted CI |
 | Clean staged-tree smoke | PASS | Exported staged source to a fresh directory; built CLI and passed offline PTY/workflow smoke |
 | Native build | PASS | `go build -trimpath -o bin/keyradar ./cmd/keyradar` |
+| Hosted Linux/macOS CI | PASS | [Run 39873046277](https://github.com/shenli/keyradar/actions/runs/39873046277), commit `6b8aa5e`: build, unit/race/static/schema checks, PTY smoke and parser fuzzing |
 | Patch whitespace | PASS | `git diff --check` |
 
 Specific assertions cover exact readable equality, same-name/different-value separation, unscoped password separation, unreadable/empty/reference uncertainty, sensitive Vercel values, encrypted responses, later GitHub page denial, Railway GraphQL errors, bounded retry behavior, cancellation, symlink rejection, schema/load errors, writer locking, and preservation of old credentials/tasks. A missing observation in a new scan does not remain a current credential copy.
@@ -32,7 +33,6 @@ The PTY harness answers standard terminal startup queries. It checks the persist
 - Controlled live AWS IAM and OpenAI key-metadata checks with independent audit access.
 - TUI authenticated interaction and cancellation during a real network operation, with terminal restoration verified.
 - Actual Codex/Claude Code skill loading and adversarial behavior evaluations. File validation and temporary installation layout checks do not establish model behavior or isolation.
-- Hosted Linux/macOS CI execution; consult the repository Actions results for the pushed commit.
 - GitGuardian/TruffleHog comparison and responder usability sessions; see `benchmark.md` (not run).
 - Confirm the repository's private security-reporting channel is enabled before publishing a release.
 
