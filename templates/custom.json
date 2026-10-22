@@ -1,0 +1,12 @@
+{
+  "id": "custom",
+  "version": "1",
+  "provider": "",
+  "window_start": null,
+  "window_end": null,
+  "readable_exposure": "unknown",
+  "unreadable_exposure": "unknown",
+  "historical_exclusion_requires_evidence": true,
+  "sources": [],
+  "notes": ["Operator-defined incident; no automated exposure determination."]
+}

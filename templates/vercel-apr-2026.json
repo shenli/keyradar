@@ -1,0 +1,17 @@
+{
+  "id": "vercel-apr-2026",
+  "version": "1",
+  "provider": "vercel",
+  "window_start": null,
+  "window_end": null,
+  "readable_exposure": "potentially_exposed",
+  "unreadable_exposure": "unknown",
+  "historical_exclusion_requires_evidence": true,
+  "sources": ["https://examples.vercel.com/kb/bulletin/vercel-april-2026-security-incident"],
+  "notes": [
+    "The public bulletin is not an account-specific exposure determination.",
+    "No attack window is inferred from publication or incident-closure dates.",
+    "Current readability, sensitivity and updatedAt do not establish historical values or settings.",
+    "Review prior values and still-running deployments; deletion alone does not revoke issuer credentials."
+  ]
+}

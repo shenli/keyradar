@@ -1,0 +1,17 @@
+/bin/
+/dist/
+.env
+.env.*
+*.env
+*.case.json
+/keyradar-cases/
+/coverage.out
+.DS_Store
+__pycache__/
+
+# Private case state and local captures are not project artifacts.
+case.json
+.keyradar
+pending-*.json
+/Screenshot*.png
+/shareable-report*.json

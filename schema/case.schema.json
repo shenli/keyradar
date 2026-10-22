@@ -1,0 +1,504 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyRadar case v1",
+  "$comment": "Structural schema. Go validation additionally enforces enums, references, limits and workflow invariants.",
+  "$ref": "#/$defs/model_Case",
+  "$defs": {
+    "model_Case": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "id": {
+          "type": "string"
+        },
+        "incident": {
+          "type": "string"
+        },
+        "template_version": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "disposition": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Scope"
+          }
+        },
+        "runs": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Run"
+          }
+        },
+        "locations": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Location"
+          }
+        },
+        "observations": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Observation"
+          }
+        },
+        "credentials": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Credential"
+          }
+        },
+        "tasks": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Task"
+          }
+        },
+        "events": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Event"
+          }
+        },
+        "issuer_observations": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_IssuerObservation"
+          }
+        },
+        "tool_access": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_ToolAccess"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "incident",
+        "template_version",
+        "created_at",
+        "updated_at",
+        "disposition",
+        "scopes",
+        "runs",
+        "locations",
+        "observations",
+        "credentials",
+        "tasks",
+        "events",
+        "issuer_observations",
+        "tool_access"
+      ]
+    },
+    "model_Scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "team": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source"
+      ]
+    },
+    "model_Run": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finished_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tool_version": {
+          "type": "string"
+        },
+        "coverage": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Coverage"
+          }
+        },
+        "requests": {
+          "type": "integer"
+        },
+        "access_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "started_at",
+        "finished_at",
+        "tool_version",
+        "coverage",
+        "requests"
+      ]
+    },
+    "model_Coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/model_Scope"
+        },
+        "status": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "scope",
+        "status",
+        "reason",
+        "count"
+      ]
+    },
+    "model_Location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/model_Scope"
+        },
+        "locator": {
+          "type": "string"
+        },
+        "variable": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "locator",
+        "variable"
+      ]
+    },
+    "model_Observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "location_id": {
+          "type": "string"
+        },
+        "credential_id": {
+          "type": "string"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "readability": {
+          "type": "string"
+        },
+        "provider_type": {
+          "type": "string"
+        },
+        "provider_updated_at": {
+          "type": "string"
+        },
+        "identity": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "run_id",
+        "location_id",
+        "observed_at",
+        "readability",
+        "identity"
+      ]
+    },
+    "model_Credential": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "key_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "binding": {
+          "type": "string"
+        },
+        "historical": {
+          "type": "boolean"
+        },
+        "exposure": {
+          "type": "string"
+        },
+        "replacement_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "issuer",
+        "kind",
+        "binding",
+        "historical",
+        "exposure"
+      ]
+    },
+    "model_Task": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "credential_id": {
+          "type": "string"
+        },
+        "location_id": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "action",
+        "status"
+      ]
+    },
+    "model_Event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "target_id": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "target_id",
+        "action",
+        "source",
+        "observed_at"
+      ]
+    },
+    "model_IssuerObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "credential_id": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_used_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "activity": {
+          "type": "string"
+        },
+        "freshness": {
+          "type": "string"
+        },
+        "binding": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "key_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "credential_id",
+        "issuer",
+        "source",
+        "fetched_at",
+        "status",
+        "reason",
+        "activity",
+        "freshness",
+        "binding"
+      ]
+    },
+    "model_ToolAccess": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cleanup": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "provider",
+        "started_at",
+        "cleanup"
+      ]
+    }
+  }
+}

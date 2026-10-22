@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyRadar report v1",
+  "$comment": "Structural schema. Go validation additionally enforces enums, references, limits and workflow invariants.",
+  "$ref": "#/$defs/report_Report",
+  "$defs": {
+    "report_Report": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "audit": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/report_Audit"
+          }
+        },
+        "tool_access": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_ToolAccess"
+          }
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "shareable": {
+          "type": "boolean"
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "incident": {
+          "type": "string"
+        },
+        "disposition": {
+          "type": "string"
+        },
+        "coverage_status": {
+          "type": "string"
+        },
+        "credentials": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/report_Credential"
+          }
+        },
+        "locations": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/report_Location"
+          }
+        },
+        "coverage": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/report_Coverage"
+          }
+        },
+        "tasks": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/model_Task"
+          }
+        },
+        "issuer_evidence": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/report_Evidence"
+          }
+        },
+        "tool_access_pending": {
+          "type": "integer"
+        },
+        "limitations": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "shareable",
+        "generated_at",
+        "incident",
+        "disposition",
+        "coverage_status",
+        "credentials",
+        "locations",
+        "coverage",
+        "tasks",
+        "issuer_evidence",
+        "tool_access_pending",
+        "limitations"
+      ]
+    },
+    "report_Audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "run_id": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finished_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "requests": {
+          "type": "integer"
+        },
+        "access_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "run_id",
+        "started_at",
+        "finished_at",
+        "requests",
+        "access_ids"
+      ]
+    },
+    "model_ToolAccess": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cleanup": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "provider",
+        "started_at",
+        "cleanup"
+      ]
+    },
+    "report_Credential": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "historical": {
+          "type": "boolean"
+        },
+        "exposure": {
+          "type": "string"
+        },
+        "binding": {
+          "type": "string"
+        },
+        "locations": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "replacements": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "issuer",
+        "historical",
+        "exposure",
+        "binding",
+        "locations"
+      ]
+    },
+    "report_Location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "readability": {
+          "type": "string"
+        },
+        "identity": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "label",
+        "readability",
+        "identity"
+      ]
+    },
+    "report_Coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "source",
+        "scope",
+        "status",
+        "reason",
+        "count"
+      ]
+    },
+    "model_Task": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "credential_id": {
+          "type": "string"
+        },
+        "location_id": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "action",
+        "status"
+      ]
+    },
+    "report_Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "credential_id": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_used_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "activity": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "freshness": {
+          "type": "string"
+        },
+        "binding": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "credential_id",
+        "issuer",
+        "source",
+        "fetched_at",
+        "activity",
+        "status",
+        "reason",
+        "freshness",
+        "binding"
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "KeyRadar"
+  short_description: "Interpret redacted credential incident evidence"
+  default_prompt: "Use $keyradar to interpret my shareable incident report and identify the next retirement actions."
